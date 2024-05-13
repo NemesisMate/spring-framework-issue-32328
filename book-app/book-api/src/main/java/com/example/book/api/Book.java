@@ -12,14 +12,16 @@ public class Book {
     @Id
     Integer id;
     String genre;
+    String author;
 
-    public static Book withGenre(String genre) {
+    public static Book withGenreAndAuthor(String genre, String author) {
         var book = new Book();
         book.setGenre(genre);
+        book.setAuthor(author);
         return book;
     }
 
-    public static Book withoutGenre() {
-        return withGenre(NO_GENRE);
+    public static Book withoutGenre(String author) {
+        return withGenreAndAuthor(NO_GENRE, author);
     }
 }

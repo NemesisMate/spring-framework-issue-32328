@@ -27,4 +27,7 @@ public interface BookClient extends BookApi {
 
     @Override
     Flux<Book> getAllByGenre(@RequestParam(value = "genre") String genre);
+
+    @Override
+    Flux<Book> getAllByAuthor(@RequestParam(value = "author") String author);
 }

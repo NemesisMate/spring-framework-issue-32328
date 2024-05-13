@@ -14,6 +14,10 @@ public interface CommonGenreApi<ENTITY, ID> extends CommonApi<ENTITY, ID> {
     @GetExchange
     Flux<ENTITY> getAllByGenre(@RequestParam(value = "genre") String genre);
 
+    @GetMapping(params = "author")
+    @GetExchange
+    Flux<ENTITY> getAllByAuthor(@RequestParam(value = "author") String author);
+
     default Flux<ENTITY> getWithoutGenre() {
         return getAllByGenre(NO_GENRE);
     }

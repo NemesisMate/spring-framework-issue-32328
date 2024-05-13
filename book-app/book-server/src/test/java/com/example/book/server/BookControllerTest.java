@@ -17,8 +17,9 @@ class BookControllerTest {
     @Test
     void test() {
         var genre = "fantasy";
-        var book = Book.withGenre(genre);
-        var bookWithoutGenre = Book.withoutGenre();
+        var author = "TestAuthor";
+        var book = Book.withGenreAndAuthor(genre, author);
+        var bookWithoutGenre = Book.withoutGenre(author);
 
         var registered = bookClient.put(book).block();
         var registeredWithoutGenre = bookClient.put(bookWithoutGenre).block();
@@ -26,6 +27,7 @@ class BookControllerTest {
         var fetchedBook = bookClient.get(registered.getId()).block();
         var fetchedByGenreBook = bookClient.getAllByGenre(genre).collectList().block();
         var fetchedWithoutGenre = bookClient.getWithoutGenre().collectList().block();
+        var fetchedAllByAuthor = bookClient.getAllByAuthor(author).collectList().block();
         var fetchedAll = bookClient.getAll().collectList().block();
         bookClient.delete(fetchedBook.getId()).block();
         var fetchedDeletedBook = bookClient.get(fetchedBook.getId()).block();
@@ -34,6 +36,7 @@ class BookControllerTest {
         assertThat(fetchedByGenreBook).containsExactly(registered);
         assertThat(fetchedWithoutGenre).containsExactly(registeredWithoutGenre);
         assertThat(fetchedAll).containsExactly(registered, registeredWithoutGenre);
+        assertThat(fetchedAllByAuthor).containsExactly(registered, registeredWithoutGenre);
         assertThat(fetchedDeletedBook).isNull();
     }
 

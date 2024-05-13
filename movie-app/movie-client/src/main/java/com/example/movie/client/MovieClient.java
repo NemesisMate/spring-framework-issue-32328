@@ -24,4 +24,7 @@ public interface MovieClient extends MovieApi {
 
     @Override
     Flux<Movie> getAllByGenre(@RequestParam(value = "genre") String genre);
+
+    @Override
+    Flux<Movie> getAllByAuthor(@RequestParam(value = "author") String author);
 }

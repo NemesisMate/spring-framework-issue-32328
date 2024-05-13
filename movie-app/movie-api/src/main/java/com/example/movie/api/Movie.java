@@ -12,14 +12,16 @@ public class Movie {
     @Id
     Integer id;
     String genre;
+    String author;
 
-    public static Movie withGenre(String genre) {
+    public static Movie withGenreAndAuthor(String genre, String author) {
         var movie = new Movie();
         movie.setGenre(genre);
+        movie.setAuthor(author);
         return movie;
     }
 
-    public static Movie withoutGenre() {
-        return withGenre(NO_GENRE);
+    public static Movie withoutGenre(String author) {
+        return withGenreAndAuthor(NO_GENRE, author);
     }
 }

@@ -17,8 +17,9 @@ class MovieControllerTest {
     @Test
     void test() {
         var genre = "fantasy";
-        var movie = Movie.withGenre(genre);
-        var movieWithoutGenre = Movie.withoutGenre();
+        var author = "TestAuthor";
+        var movie = Movie.withGenreAndAuthor(genre, author);
+        var movieWithoutGenre = Movie.withoutGenre(author);
 
         var registered = movieClient.put(movie).block();
         var registeredWithoutGenre = movieClient.put(movieWithoutGenre).block();
@@ -26,6 +27,7 @@ class MovieControllerTest {
         var fetchedMovie = movieClient.get(registered.getId()).block();
         var fetchedByGenreMovie = movieClient.getAllByGenre(genre).collectList().block();
         var fetchedWithoutGenre = movieClient.getWithoutGenre().collectList().block();
+        var fetchedAllByAuthor = movieClient.getAllByAuthor(author).collectList().block();
         var fetchedAll = movieClient.getAll().collectList().block();
         movieClient.delete(fetchedMovie.getId()).block();
         var fetchedDeletedMovie = movieClient.get(fetchedMovie.getId()).block();
@@ -34,6 +36,7 @@ class MovieControllerTest {
         assertThat(fetchedByGenreMovie).containsExactly(registered);
         assertThat(fetchedWithoutGenre).containsExactly(registeredWithoutGenre);
         assertThat(fetchedAll).containsExactly(registered, registeredWithoutGenre);
+        assertThat(fetchedAllByAuthor).containsExactly(registered, registeredWithoutGenre);
         assertThat(fetchedDeletedMovie).isNull();
     }
 

@@ -12,4 +12,9 @@ public abstract class CommonGenreController<ENTITY, ID, REPO extends CommonGenre
     public Flux<ENTITY> getAllByGenre(String genre) {
         return repository.findByGenre(genre);
     }
+
+    @Override
+    public Flux<ENTITY> getAllByAuthor(String author) {
+        return repository.findByAuthor(author);
+    }
 }

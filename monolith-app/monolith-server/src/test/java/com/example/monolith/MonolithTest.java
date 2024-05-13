@@ -20,10 +20,11 @@ class MonolithTest {
     void test() {
         var storeId = "TestStore";
         var genre = "fantasy";
+        var author = "TestAuthor";
 
         var book = webTestClient.put()
                 .uri("/books")
-                .bodyValue(Book.withGenre(genre))
+                .bodyValue(Book.withGenreAndAuthor(genre, author))
                 .exchange()
                 .expectBody(Object.class)
                 .returnResult().getResponseBody();
