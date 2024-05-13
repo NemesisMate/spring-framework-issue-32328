@@ -7,5 +7,4 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface MovieRepository extends CommonGenreRepository<Movie, Integer> {
-    Flux<Movie> findByGenre(String genre);
 }
