@@ -10,10 +10,9 @@ import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
 import reactor.core.publisher.Flux;
 
-@RequestMapping({"/fruit", "/fruits"})
+
 @HttpExchange(url = "/fruit", contentType = MediaType.APPLICATION_JSON_VALUE, accept = MediaType.APPLICATION_JSON_VALUE)
 public interface FruitApi extends CommonApi<Fruit, Integer> {
-    @GetMapping(params = "name")
     @GetExchange
     Flux<Fruit> getAllByName(@RequestParam(value = "name") String name);
 }
