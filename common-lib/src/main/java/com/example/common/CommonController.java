@@ -25,4 +25,9 @@ public abstract class CommonController<ENTITY, ID, REPO extends CommonRepository
     public Mono<ENTITY> put(ENTITY entity) {
         return repository.save(entity);
     }
+
+    @Override
+    public Mono<Void> delete(ID id) {
+        return repository.deleteById(id);
+    }
 }

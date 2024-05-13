@@ -1,0 +1,2 @@
+server.port: 7773
+movie.client.url: http://localhost:${server.port}

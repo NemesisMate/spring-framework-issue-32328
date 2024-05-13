@@ -2,17 +2,28 @@ This is just an example to assist the discussion on https://github.com/spring-pr
 
 The logic within this project is not meant to make any sense further than illustrate the usage of the discussed annotations.
 
+In order to run ALL tests (including all subprojects), execute from the root folder:
+`./gradlew test`
+
 The project is separated in different apps:
-* Common Lib: provides generic API definitions and abstract classes so other apps can reuse them (Book App in this case). 
-* Book App: manages and serves books.
+* **Common Lib**: provides generic API definitions and abstract classes so other apps can reuse them (Book App in this case). 
+* **Book App**: manages and serves books.
   * Run: `./gradlew :book-app:book-server:bootRun`
   * Test: `./gradlew :book-app:book-server:test`
   * Curl example: `curl localhost:8081/books`
-* Store App: centralizes item access by customers. Acts as a client of the Book App.
+* **Movie App**: manages and serves movies.
+  * Run: `./gradlew :movie-app:movie-server:bootRun`
+  * Test: `./gradlew :movie-app:movie-server:test`
+  * Curl example: `curl localhost:8081/books`
+* **Fruit App**: manages and serves fruits.
+  * Run: `./gradlew :fruit-app:fruit-server:bootRun`
+  * Test: `./gradlew :fruit-app:fruit-server:test`
+  * Curl example: `curl localhost:8081/books`
+* **Store App**: centralizes item access by customers. Acts as a client of the Book App.
   * Run: `./gradlew :store-app:store-server:bootRun`
   * Test: `N/A`
   * Curl example: `curl localhost:8080/store/mystore`
-* Monolith App: groups all apps in a "single executable/server" so it can be deployed in simple setups.
+* **Monolith App**: groups all apps in a "single executable/server" so it can be deployed in simple setups.
   * Run: `./gradlew :monolith-app:monolith-server:bootRun`
   * Test: `./gradlew :monolith-app:monolith-server:test`
   * Curl examples: `curl localhost:8080/store/mystore`, `curl localhost:8080/books`

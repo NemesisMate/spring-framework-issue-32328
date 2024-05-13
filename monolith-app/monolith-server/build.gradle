@@ -4,14 +4,19 @@ plugins {
 
 configurations.configureEach {
     exclude group: 'com.example', module: 'book-client'
+    exclude group: 'com.example', module: 'movie-client'
+    exclude group: 'com.example', module: 'fruit-client'
 }
 
 dependencies {
     implementation project(':book-app:book-server')
+    implementation project(':movie-app:movie-server')
+    implementation project(':fruit-app:fruit-server')
     implementation project(':store-app:store-server')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation project(':book-app:book-api')
+    testImplementation project(':fruit-app:fruit-api')
 }

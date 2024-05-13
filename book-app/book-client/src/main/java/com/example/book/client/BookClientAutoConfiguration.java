@@ -11,7 +11,7 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 @EnableConfigurationProperties(BookClientProperties.class)
 public class BookClientAutoConfiguration {
     @Bean
-    public BookClient casinoClient(WebClient.Builder webClientBuilder, BookClientProperties properties) {
+    public BookClient bookClient(WebClient.Builder webClientBuilder, BookClientProperties properties) {
         return HttpServiceProxyFactory.builder()
                 .exchangeAdapter(WebClientAdapter.create(webClientBuilder
                         .baseUrl(properties.url())

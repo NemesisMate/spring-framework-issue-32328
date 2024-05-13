@@ -1,10 +1,12 @@
 package com.example.common;
 
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.service.annotation.DeleteExchange;
 import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.PutExchange;
 import reactor.core.publisher.Flux;
@@ -22,4 +24,8 @@ public interface CommonApi<ENTITY, ID> {
     @PutMapping
     @PutExchange
     Mono<ENTITY> put(@RequestBody ENTITY entity);
+
+    @DeleteMapping("/{id}")
+    @DeleteExchange(value = "/{id}")
+    Mono<Void> delete(@PathVariable("id") ID id);
 }

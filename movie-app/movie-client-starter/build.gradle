@@ -1,0 +1,8 @@
+plugins {
+	id 'java-library'
+}
+
+dependencies {
+	api project(':movie-app:movie-api')
+	runtimeOnly project(':movie-app:movie-client')
+}

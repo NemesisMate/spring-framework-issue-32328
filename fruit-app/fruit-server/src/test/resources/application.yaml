@@ -1,0 +1,2 @@
+server.port: 7772
+fruit.client.url: http://localhost:${server.port}

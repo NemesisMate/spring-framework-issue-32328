@@ -2,8 +2,11 @@ package com.example.book.client;
 
 import com.example.book.api.Book;
 import com.example.book.api.BookApi;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.service.annotation.GetExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,9 +20,6 @@ public interface BookClient extends BookApi {
     Mono<Book> put(@RequestBody Book book);
 
     @Override
-    Mono<Void> delete(@PathVariable("id") Integer id);
-
-    @Override
     Flux<Book> getAll();
 
     @Override
@@ -28,4 +28,8 @@ public interface BookClient extends BookApi {
     default Flux<Book> getWithoutGenre() {
         return getAllByGenre(Book.NO_GENRE);
     }
+
+    @GetMapping(params = "genre")
+    @GetExchange
+    Flux<Book> getAllByGenre(@RequestParam(value = "genre") String genre);
 }

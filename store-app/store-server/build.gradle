@@ -4,6 +4,8 @@ plugins {
 
 dependencies {
     implementation project(':book-app:book-client-starter')
+    implementation project(':movie-app:movie-client-starter')
+    implementation project(':fruit-app:fruit-client-starter')
 
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.data:spring-data-r2dbc'

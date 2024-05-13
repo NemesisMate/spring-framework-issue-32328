@@ -1,0 +1,11 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    api project(':movie-app:movie-api')
+
+    implementation 'org.springframework:spring-webflux'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+}
+

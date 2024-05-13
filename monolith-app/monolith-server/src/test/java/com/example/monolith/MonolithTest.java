@@ -1,6 +1,7 @@
 package com.example.monolith;
 
 import com.example.book.api.Book;
+import com.example.fruit.api.Fruit;
 import com.example.store.server.Store;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,14 @@ class MonolithTest {
                 .uri("/books")
                 .bodyValue(Book.withGenre(genre))
                 .exchange()
-                .expectBody(Book.class)
+                .expectBody(Object.class)
+                .returnResult().getResponseBody();
+
+        var fruit = webTestClient.put()
+                .uri("/fruit")
+                .bodyValue(Fruit.withName("apple"))
+                .exchange()
+                .expectBody(Object.class)
                 .returnResult().getResponseBody();
 
         webTestClient.get()

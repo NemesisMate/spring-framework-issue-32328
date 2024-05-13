@@ -27,11 +27,14 @@ class BookControllerTest {
         var fetchedByGenreBook = bookClient.getAllByGenre(genre).collectList().block();
         var fetchedWithoutGenre = bookClient.getWithoutGenre().collectList().block();
         var fetchedAll = bookClient.getAll().collectList().block();
+        bookClient.delete(fetchedBook.getId()).block();
+        var fetchedDeletedBook = bookClient.get(fetchedBook.getId()).block();
 
         assertThat(fetchedBook).isEqualTo(registered);
         assertThat(fetchedByGenreBook).containsExactly(registered);
         assertThat(fetchedWithoutGenre).containsExactly(registeredWithoutGenre);
         assertThat(fetchedAll).containsExactly(registered, registeredWithoutGenre);
+        assertThat(fetchedDeletedBook).isNull();
     }
 
 
