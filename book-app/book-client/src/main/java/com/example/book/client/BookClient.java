@@ -25,11 +25,6 @@ public interface BookClient extends BookApi {
     @Override
     Mono<Book> get(@PathVariable("id") Integer id);
 
-    default Flux<Book> getWithoutGenre() {
-        return getAllByGenre(Book.NO_GENRE);
-    }
-
-    @GetMapping(params = "genre")
     @GetExchange
     Flux<Book> getAllByGenre(@RequestParam(value = "genre") String genre);
 }
