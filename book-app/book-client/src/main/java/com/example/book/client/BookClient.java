@@ -25,6 +25,6 @@ public interface BookClient extends BookApi {
     @Override
     Mono<Book> get(@PathVariable("id") Integer id);
 
-    @GetExchange
+    @Override
     Flux<Book> getAllByGenre(@RequestParam(value = "genre") String genre);
 }
